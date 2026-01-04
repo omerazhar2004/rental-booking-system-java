@@ -29,7 +29,7 @@ public class StudentRentalsApp {
 
         System.out.println("Reached Room test");
 
-        Room room = new Room(1, 150, 2, 12);
+        Room room = new Room(1, 150, 2, 12, "Cardiff", "CF10");
         room.addAvailabilityRange(new DateRange(
                 LocalDate.of(2026, 1, 1),
                 LocalDate.of(2026, 3, 1)
@@ -57,8 +57,9 @@ public class StudentRentalsApp {
 
         SearchRoom search = new SearchRoom(repo, new PriceAscendingSort());
 
-        List<Room> results = search.search(null, request, 4, 0, 1000);
-        System.out.println("Results: " + results.size()); // should be 1
+        List<Room> results = search.search("Cardiff", request, 4, 0, 1000);
+        System.out.println("Results in Cardiff: " + results.size()); // should be 1
+        System.out.println("Results in London: " + search.search("London", request, 4, 0, 1000).size());
 
 
     }

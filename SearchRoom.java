@@ -12,12 +12,17 @@ public class SearchRoom {
         this.sortStrategy = Objects.requireNonNull(sortStrategy);
     }
 
-    public List<Room> search(String cityOrNull, DateRange requestedRange, int weeks, int minPrice, int maxPrice) {
+    public List<Room> search(String city, DateRange requestedRange, int weeks, int minPrice, int maxPrice) {
         Objects.requireNonNull(requestedRange);
 
         List<Room> eligible = new ArrayList<>();
 
         for (Room room : roomRepo.findAll()) {
+            if(city != null && !city.isBlank()){
+                if(!room.getCity().equalsIgnoreCase(city)){
+                    continue;
+                }
+            }
             if (minPrice > 0 && room.getWeeklyPrice() < minPrice) continue;
             if (maxPrice > 0 && room.getWeeklyPrice() > maxPrice) continue;
 

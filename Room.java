@@ -11,14 +11,32 @@ public class Room {
     private int weeklyPrice;   // GBP per week
     private int minWeeks;
     private int maxWeeks;
+    private final String city;
+    private final String postcode;
 
     private final List<DateRange> availabilityRanges = new ArrayList<>();
 
-    public Room(int roomId, int weeklyPrice, int minWeeks, int maxWeeks) {
+    public Room(int roomId, int weeklyPrice, int minWeeks, int maxWeeks, String city, String postcode) {
         if (roomId <= 0) throw new IllegalArgumentException("roomId must be positive");
+        if (weeklyPrice <= 0 ) throw new IllegalArgumentException("weeklyPrice must be positive.");
+        if(minWeeks <= 0) throw new IllegalArgumentException("minWeeks must be positive.");
+        if(maxWeeks < minWeeks) throw new IllegalArgumentException("maxWeeks must be >= minWeeks.");
+        if(city == null || city.isBlank()) throw new IllegalArgumentException("city is required.");
         this.roomId = roomId;
+        this.weeklyPrice = weeklyPrice;
+        this.minWeeks = minWeeks;
+        this.maxWeeks = maxWeeks;
+        this.city = city.trim();
+        this.postcode = (postcode == null || postcode.isBlank()) ? null : postcode.trim();
         setWeeklyPrice(weeklyPrice);
         setMinMaxStay(minWeeks, maxWeeks);
+    }
+
+    public String getCity(){
+        return city;
+    }
+    public String getPostcode(){
+        return postcode;
     }
 
     public int getRoomId() {
