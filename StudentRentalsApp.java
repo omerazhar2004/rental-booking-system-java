@@ -4,6 +4,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 
+/**
+ * Purpose:
+ * This class is used to demonstrate the booking cycle of searching, booking, state changes and output
+ * it is meant to seed data inorder to demonstrate the functionality of Student Rentals.
+ * It is meant to run a scripted demo of the Student Rentals.
+ * It contains the main method for implementing all the features.
+ * It has been kept minimum on purpose as it delegates the bussiness logic to domain classes.
+ */
 
 public class StudentRentalsApp {
 
