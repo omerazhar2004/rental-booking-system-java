@@ -24,8 +24,8 @@ public class StudentRentalsApp {
                 LocalDate.of(2026, 1, 15)
         );
 
-        System.out.println(a.overlaps(b)); // true
-        System.out.println(a.overlaps(c)); // false
+        System.out.println("Date range overlap test(should be true): " + a.overlaps(b)); // true
+        System.out.println("Date range overlap test(should be false): " + a.overlaps(c)); // false
 
         System.out.println("Reached Room test");
 
@@ -40,17 +40,18 @@ public class StudentRentalsApp {
                 LocalDate.of(2026, 2, 7)
         );
 
-        System.out.println(room.isAvailable(request, 4)); // true
-        System.out.println(room.isAvailable(request, 1)); // false
+        System.out.println("Room available for 4 weeks(should be true): " + room.isAvailable(request, 4)); // true
+        System.out.println("Room available for 1 weeks(should be false): " + room.isAvailable(request, 1)); // false
 
         Booking booking = new Booking(1, room, request);
-        System.out.println(booking.getStatus()); // REQUESTED
+        System.out.println("Booking Lifecycle:");
+        System.out.println("Status: " + booking.getStatus()); // REQUESTED
         booking.acceptBooking();
-        System.out.println(booking.getStatus()); // ACCEPTED
+        System.out.println("Status: " + booking.getStatus()); // ACCEPTED
         booking.confirmDeposit();
-        System.out.println(booking.getStatus()); // CONFIRMED
+        System.out.println("Status: " + booking.getStatus()); // CONFIRMED
         booking.completeBooking();
-        System.out.println(booking.getStatus()); // COMPLETED
+        System.out.println("Status: " + booking.getStatus()); // COMPLETED
 
         IRoomRepository repo = new InMemoryRoomRepository();
         repo.add(room);
