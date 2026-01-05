@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents a single room that can be rented, including pricing,
+ * stay constraints, and host-defined availability.
+ */
+
 public class Room {
 
     private final int roomId;
@@ -13,6 +18,7 @@ public class Room {
     private int maxWeeks;
     private final String city;
     private final String postcode;
+    private int deposit;
 
     private final List<DateRange> availabilityRanges = new ArrayList<>();
 
@@ -94,5 +100,16 @@ public class Room {
             }
         }
         return false;
+    }
+
+  
+
+    public int getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(int deposit) {
+        if (deposit < 0) throw new IllegalArgumentException("Deposit cannot be negative");
+        this.deposit = deposit;
     }
 }

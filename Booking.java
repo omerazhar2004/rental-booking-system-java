@@ -87,5 +87,12 @@ public class Booking {
         }
         status = BookingStatus.COMPLETED;
     }
+    public void declineBooking() {
+    if (status != BookingStatus.REQUESTED) {
+        throw new IllegalStateException("Can only reject a REQUESTED booking.");
+    }
+    status = BookingStatus.REJECTED;
+}
+
 }
 
